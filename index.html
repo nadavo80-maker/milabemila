@@ -129,6 +129,45 @@ textarea{min-height:140px;resize:vertical}
 .topic{background:var(--surface);border:1px solid var(--line);color:var(--ink);padding:12px 14px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:start}
 .topic:hover{border-color:var(--accent)}
 .topic .en{color:var(--muted);font-size:.85rem}
+.kids-entry{background:var(--marker);color:var(--marker-ink);border-radius:var(--r);padding:14px 16px;display:flex;align-items:center;gap:14px;text-align:start;width:100%}
+.kids-entry .em{font-size:2.4rem;line-height:1}
+.kids-entry b{font-family:var(--display);font-weight:400;font-size:1.25rem;display:block}
+.emo{font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;line-height:1}
+.k-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.k-home{width:52px;height:52px;border-radius:50%;background:var(--surface);border:2px solid var(--line);font-size:1.6rem}
+.k-stars{display:flex;gap:2px;direction:ltr;font-size:1.3rem}
+.k-stars i{font-style:normal;opacity:.25;filter:grayscale(1)}
+.k-stars i.on{opacity:1;filter:none}
+.k-stars i.half{opacity:.6;filter:grayscale(.6)}
+.k-ages{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.k-age{background:var(--surface);border:2px solid var(--line);color:var(--ink);border-radius:var(--r);padding:12px 4px;display:flex;flex-direction:column;align-items:center;gap:4px;font-weight:700}
+.k-age .emo{font-size:2rem}
+.k-age small{color:var(--muted);font-weight:600}
+.k-age[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.k-cats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.k-cat{background:var(--surface);border:2px solid var(--line);color:var(--ink);border-radius:18px;padding:14px 6px;display:flex;flex-direction:column;align-items:center;gap:6px;font-weight:700;font-size:1.05rem}
+.k-cat .emo{font-size:3rem}
+.k-cat.all{grid-column:1/-1;flex-direction:row;justify-content:center;gap:12px;background:var(--accent-soft)}
+.k-cat.all .emo{font-size:2.2rem}
+.k-q{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.k-word{font-family:var(--en);direction:ltr;font-size:2.8rem;font-weight:600;line-height:1.1;word-break:break-word}
+.k-say{width:64px;height:64px;border-radius:50%;background:var(--marker);color:var(--marker-ink);font-size:1.7rem}
+.k-tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;width:100%}
+.k-tiles.n3 .k-tile:last-child{grid-column:1/-1;justify-self:center;width:calc(50% - 6px)}
+.k-tile{background:var(--surface);border:3px solid var(--line);border-radius:22px;aspect-ratio:1;max-width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--ink);padding:6px}
+.k-tile .emo{font-size:clamp(3.5rem,18vw,5.5rem)}
+.k-tiles.n2 .k-tile .emo{font-size:clamp(4.5rem,24vw,7rem)}
+.k-tile .lbl{font-size:.95rem;font-weight:700;min-height:1.4em}
+.k-tile .lbl .en{color:var(--muted);font-weight:600}
+.k-tile.wrong{border-color:var(--bad);background:var(--bad-soft);animation:shake .4s}
+.k-tile.right{border-color:var(--good);background:var(--good-soft);animation:pop .45s}
+.k-tile:disabled{cursor:default}
+.k-fb{min-height:2.6em;font-weight:700;font-size:1.1rem}
+.k-fb.good{color:var(--good)} .k-fb.bad{color:var(--bad)}
+.k-done{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+.k-done .trophy{font-size:5.5rem;animation:pop .6s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+@keyframes pop{0%{transform:scale(.85)}60%{transform:scale(1.08)}100%{transform:scale(1)}}
 .back{background:transparent;color:var(--accent);font-weight:700;padding:4px 0}
 </style>
 
@@ -142,6 +181,8 @@ textarea{min-height:140px;resize:vertical}
 const BANK = {"ד'": {"בית ומשפחה": [["mother","אמא"],["father","אבא"],["sister","אחות"],["brother","אח"],["baby","תינוק"],["grandmother","סבתא"],["grandfather","סבא"],["family","משפחה"],["house","בית"],["room","חדר"],["door","דלת"],["window","חלון"],["bed","מיטה"],["table","שולחן"],["chair","כיסא"],["kitchen","מטבח"],["garden","גינה"],["cat","חתול"],["dog","כלב"],["bird","ציפור"]],"בית ספר": [["school","בית ספר"],["teacher","מורה"],["pupil","תלמיד"],["class","כיתה"],["book","ספר"],["pen","עט"],["pencil","עיפרון"],["bag","תיק"],["desk","שולחן כתיבה"],["ruler","סרגל"],["eraser","מחק"],["notebook","מחברת"],["board","לוח"],["friend","חבר"],["read","לקרוא"],["write","לכתוב"],["draw","לצייר"],["count","לספור"],["listen","להקשיב"],["play","לשחק"]],"צבעים ומספרים": [["red","אדום"],["blue","כחול"],["green","ירוק"],["yellow","צהוב"],["black","שחור"],["white","לבן"],["orange","כתום"],["pink","ורוד"],["brown","חום"],["purple","סגול"],["one","אחת"],["two","שתיים"],["three","שלוש"],["four","ארבע"],["five","חמש"],["six","שש"],["seven","שבע"],["eight","שמונה"],["nine","תשע"],["ten","עשר"]],"אוכל, גוף ורגשות": [["apple","תפוח"],["banana","בננה"],["bread","לחם"],["milk","חלב"],["water","מים"],["egg","ביצה"],["cake","עוגה"],["cheese","גבינה"],["juice","מיץ"],["fish","דג"],["head","ראש"],["hand","יד"],["eye","עין"],["ear","אוזן"],["nose","אף"],["mouth","פה"],["leg","רגל"],["hair","שיער"],["happy","שמח"],["sad","עצוב"]]},"ה'": {"שגרה יומית": [["morning","בוקר"],["evening","ערב"],["night","לילה"],["today","היום"],["tomorrow","מחר"],["yesterday","אתמול"],["breakfast","ארוחת בוקר"],["lunch","ארוחת צהריים"],["dinner","ארוחת ערב"],["wake up","להתעורר"],["get dressed","להתלבש"],["brush","לצחצח"],["wash","לשטוף"],["always","תמיד"],["usually","בדרך כלל"],["sometimes","לפעמים"],["never","אף פעם"],["early","מוקדם"],["late","מאוחר"],["homework","שיעורי בית"]],"מקומות בעיר": [["city","עיר"],["street","רחוב"],["park","פארק"],["shop","חנות"],["market","שוק"],["library","ספרייה"],["hospital","בית חולים"],["bank","בנק"],["restaurant","מסעדה"],["zoo","גן חיות"],["beach","חוף ים"],["station","תחנה"],["bus","אוטובוס"],["train","רכבת"],["car","מכונית"],["bicycle","אופניים"],["near","קרוב"],["far","רחוק"],["left","שמאלה"],["right","ימינה"]],"תחביבים ופנאי": [["hobby","תחביב"],["game","משחק"],["football","כדורגל"],["swim","לשחות"],["dance","לרקוד"],["sing","לשיר"],["ride","לרכוב"],["cook","לבשל"],["music","מוזיקה"],["movie","סרט"],["picture","תמונה"],["ball","כדור"],["team","קבוצה"],["win","לנצח"],["lose","להפסיד"],["fun","כיף"],["favorite","אהוב"],["weekend","סוף שבוע"],["holiday","חופשה"],["party","מסיבה"]],"מזג אוויר וטבע": [["weather","מזג אוויר"],["sun","שמש"],["rain","גשם"],["wind","רוח"],["cloud","ענן"],["snow","שלג"],["hot","חם"],["cold","קר"],["warm","חמים"],["cool","קריר"],["summer","קיץ"],["winter","חורף"],["spring","אביב"],["autumn","סתיו"],["sky","שמיים"],["tree","עץ"],["flower","פרח"],["sea","ים"],["mountain","הר"],["river","נהר"]]},"ו'": {"פעלים חשובים": [["believe","להאמין"],["borrow","לשאול (חפץ)"],["choose","לבחור"],["decide","להחליט"],["explain","להסביר"],["forget","לשכוח"],["remember","לזכור"],["understand","להבין"],["return","להחזיר"],["arrive","להגיע"],["leave","לעזוב"],["carry","לסחוב"],["build","לבנות"],["break","לשבור"],["catch","לתפוס"],["follow","לעקוב"],["hide","להסתתר"],["laugh","לצחוק"],["cry","לבכות"],["travel","לטייל"]],"רגשות ותכונות": [["angry","כועס"],["afraid","מפחד"],["tired","עייף"],["hungry","רעב"],["thirsty","צמא"],["bored","משועמם"],["excited","נרגש"],["proud","גאה"],["worried","מודאג"],["surprised","מופתע"],["kind","אדיב"],["brave","אמיץ"],["funny","מצחיק"],["clever","חכם"],["lazy","עצלן"],["honest","ישר"],["shy","ביישן"],["polite","מנומס"],["quiet","שקט"],["friendly","ידידותי"]],"טיולים והרפתקאות": [["adventure","הרפתקה"],["journey","מסע"],["trip","טיול"],["map","מפה"],["ticket","כרטיס"],["suitcase","מזוודה"],["passport","דרכון"],["airport","שדה תעופה"],["hotel","מלון"],["tent","אוהל"],["forest","יער"],["desert","מדבר"],["island","אי"],["village","כפר"],["country","ארץ"],["world","עולם"],["road","כביש"],["bridge","גשר"],["dangerous","מסוכן"],["safe","בטוח"]],"בריאות וגוף": [["healthy","בריא"],["sick","חולה"],["doctor","רופא"],["nurse","אחות (בבית חולים)"],["medicine","תרופה"],["pain","כאב"],["headache","כאב ראש"],["fever","חום (מחלה)"],["heart","לב"],["blood","דם"],["bone","עצם"],["tooth","שן"],["skin","עור"],["exercise","להתאמן"],["sleep","לישון"],["rest","לנוח"],["strong","חזק"],["weak","חלש"],["accident","תאונה"],["habit","הרגל"]]},"ז'": {"לימודים ובית ספר": [["subject","מקצוע לימוד"],["history","היסטוריה"],["science","מדעים"],["mathematics","מתמטיקה"],["geography","גאוגרפיה"],["language","שפה"],["lesson","שיעור"],["exam","מבחן"],["grade","ציון"],["question","שאלה"],["answer","תשובה"],["mistake","טעות"],["practice","לתרגל"],["improve","לשפר"],["succeed","להצליח"],["fail","להיכשל"],["knowledge","ידע"],["research","מחקר"],["project","פרויקט"],["example","דוגמה"]],"תקשורת ודעות": [["opinion","דעה"],["agree","להסכים"],["disagree","לא להסכים"],["argue","להתווכח"],["discuss","לדון"],["suggest","להציע"],["advice","עצה"],["message","הודעה"],["conversation","שיחה"],["describe","לתאר"],["mention","להזכיר"],["complain","להתלונן"],["promise","להבטיח"],["apologize","להתנצל"],["invite","להזמין"],["reply","להשיב"],["whisper","ללחוש"],["shout","לצעוק"],["truth","אמת"],["secret","סוד"]],"טבע וסביבה": [["environment","סביבה"],["nature","טבע"],["pollution","זיהום"],["recycle","למחזר"],["energy","אנרגיה"],["planet","כוכב לכת"],["ocean","אוקיינוס"],["climate","אקלים"],["temperature","טמפרטורה"],["protect","להגן"],["plant","צמח"],["animal","בעל חיים"],["insect","חרק"],["wild","פראי"],["rare","נדיר"],["disappear","להיעלם"],["waste","פסולת"],["clean","נקי"],["dirty","מלוכלך"],["future","עתיד"]],"אנשים ויחסים": [["neighbor","שכן"],["relative","קרוב משפחה"],["stranger","זר"],["guest","אורח"],["crowd","קהל"],["leader","מנהיג"],["member","חבר (בקבוצה)"],["partner","שותף"],["relationship","קשר"],["trust","אמון"],["respect","כבוד"],["share","לשתף"],["support","לתמוך"],["care","לדאוג"],["fight","לריב"],["forgive","לסלוח"],["lonely","בודד"],["popular","פופולרי"],["generous","נדיב"],["jealous","מקנא"]]},"ח'": {"פעלים אקדמיים": [["achieve","להשיג"],["avoid","להימנע"],["compare","להשוות"],["consider","לשקול"],["prevent","למנוע"],["increase","להגדיל"],["reduce","להקטין"],["include","לכלול"],["require","לדרוש"],["provide","לספק"],["develop","לפתח"],["create","ליצור"],["discover","לגלות"],["examine","לבחון"],["identify","לזהות"],["predict","לחזות"],["solve","לפתור"],["replace","להחליף"],["affect","להשפיע על"],["prove","להוכיח"]],"מושגים ורעיונות": [["benefit","תועלת"],["advantage","יתרון"],["disadvantage","חיסרון"],["purpose","מטרה"],["reason","סיבה"],["result","תוצאה"],["cause","גורם"],["effect","השפעה"],["solution","פתרון"],["situation","מצב"],["method","שיטה"],["process","תהליך"],["evidence","ראיה"],["fact","עובדה"],["idea","רעיון"],["attitude","גישה"],["quality","איכות"],["amount","כמות"],["importance","חשיבות"],["success","הצלחה"]],"תיאורים ותכונות": [["ancient","עתיק"],["modern","מודרני"],["common","נפוץ"],["unusual","יוצא דופן"],["necessary","הכרחי"],["possible","אפשרי"],["impossible","בלתי אפשרי"],["similar","דומה"],["obvious","ברור מאליו"],["serious","רציני"],["positive","חיובי"],["negative","שלילי"],["huge","ענק"],["tiny","זעיר"],["average","ממוצע"],["complete","שלם"],["confident","בטוח בעצמו"],["curious","סקרן"],["independent","עצמאי"],["responsible","אחראי"]],"חברה וטכנולוגיה": [["society","חברה (קהילת אנשים)"],["government","ממשלה"],["law","חוק"],["citizen","אזרח"],["community","קהילה"],["culture","תרבות"],["tradition","מסורת"],["population","אוכלוסייה"],["technology","טכנולוגיה"],["device","מכשיר"],["invention","המצאה"],["screen","מסך"],["internet","אינטרנט"],["information","מידע"],["connect","לחבר"],["download","להוריד (קובץ)"],["equal","שווה"],["freedom","חופש"],["war","מלחמה"],["peace","שלום"]]}};
 const GRADES = Object.keys(BANK);
 const bankAll = g => Object.values(BANK[g]||{}).flat();
+const KIDS = [{"id": "animals", "name": "חיות", "icon": "🐶", "words": [["dog", "כלב", "🐶"], ["cat", "חתול", "🐱"], ["cow", "פרה", "🐮"], ["horse", "סוס", "🐴"], ["pig", "חזיר", "🐷"], ["sheep", "כבשה", "🐑"], ["chicken", "תרנגולת", "🐔"], ["duck", "ברווז", "🦆"], ["fish", "דג", "🐟"], ["bird", "ציפור", "🐦"], ["lion", "אריה", "🦁"], ["monkey", "קוף", "🐵"], ["elephant", "פיל", "🐘"], ["rabbit", "ארנב", "🐰"], ["frog", "צפרדע", "🐸"], ["bear", "דוב", "🐻"], ["mouse", "עכבר", "🐭"], ["snake", "נחש", "🐍"], ["turtle", "צב", "🐢"], ["butterfly", "פרפר", "🦋"]]}, {"id": "food", "name": "אוכל", "icon": "🍎", "words": [["apple", "תפוח", "🍎"], ["banana", "בננה", "🍌"], ["orange", "תפוז", "🍊"], ["grapes", "ענבים", "🍇"], ["strawberry", "תות", "🍓"], ["watermelon", "אבטיח", "🍉"], ["bread", "לחם", "🍞"], ["cheese", "גבינה", "🧀"], ["egg", "ביצה", "🥚"], ["milk", "חלב", "🥛"], ["cake", "עוגה", "🍰"], ["pizza", "פיצה", "🍕"], ["ice cream", "גלידה", "🍦"], ["carrot", "גזר", "🥕"], ["tomato", "עגבנייה", "🍅"], ["cookie", "עוגייה", "🍪"], ["candy", "סוכרייה", "🍬"], ["juice", "מיץ", "🧃"], ["corn", "תירס", "🌽"], ["water", "מים", "💧"]]}, {"id": "colors", "name": "צבעים", "icon": "🎨", "words": [["red", "אדום", "🔴"], ["blue", "כחול", "🔵"], ["green", "ירוק", "🟢"], ["yellow", "צהוב", "🟡"], ["orange", "כתום", "🟠"], ["purple", "סגול", "🟣"], ["black", "שחור", "⚫"], ["white", "לבן", "⚪"], ["brown", "חום", "🟤"]]}, {"id": "numbers", "name": "מספרים", "icon": "🔢", "words": [["one", "אחת", "1️⃣"], ["two", "שתיים", "2️⃣"], ["three", "שלוש", "3️⃣"], ["four", "ארבע", "4️⃣"], ["five", "חמש", "5️⃣"], ["six", "שש", "6️⃣"], ["seven", "שבע", "7️⃣"], ["eight", "שמונה", "8️⃣"], ["nine", "תשע", "9️⃣"], ["ten", "עשר", "🔟"]]}, {"id": "home", "name": "בבית", "icon": "🏠", "words": [["house", "בית", "🏠"], ["door", "דלת", "🚪"], ["bed", "מיטה", "🛏️"], ["chair", "כיסא", "🪑"], ["book", "ספר", "📕"], ["pencil", "עיפרון", "✏️"], ["bag", "תיק", "🎒"], ["ball", "כדור", "⚽"], ["key", "מפתח", "🔑"], ["phone", "טלפון", "📱"], ["clock", "שעון", "⏰"], ["cup", "כוס", "☕"], ["hat", "כובע", "🎩"], ["shoe", "נעל", "👟"], ["shirt", "חולצה", "👕"], ["glasses", "משקפיים", "👓"], ["umbrella", "מטרייה", "☂️"], ["gift", "מתנה", "🎁"], ["balloon", "בלון", "🎈"], ["teddy bear", "דובי", "🧸"]]}, {"id": "transport", "name": "תחבורה", "icon": "🚗", "words": [["car", "מכונית", "🚗"], ["bus", "אוטובוס", "🚌"], ["train", "רכבת", "🚆"], ["airplane", "מטוס", "✈️"], ["boat", "סירה", "⛵"], ["bicycle", "אופניים", "🚲"], ["truck", "משאית", "🚚"], ["taxi", "מונית", "🚕"], ["motorcycle", "אופנוע", "🏍️"], ["rocket", "טיל", "🚀"], ["helicopter", "מסוק", "🚁"], ["ambulance", "אמבולנס", "🚑"], ["fire truck", "כבאית", "🚒"], ["tractor", "טרקטור", "🚜"], ["ship", "אונייה", "🚢"]]}, {"id": "body", "name": "גוף ורגשות", "icon": "👋", "words": [["eye", "עין", "👁️"], ["ear", "אוזן", "👂"], ["nose", "אף", "👃"], ["mouth", "פה", "👄"], ["hand", "יד", "✋"], ["foot", "כף רגל", "🦶"], ["tooth", "שן", "🦷"], ["leg", "רגל", "🦵"], ["happy", "שמח", "😀"], ["sad", "עצוב", "😢"], ["angry", "כועס", "😠"], ["baby", "תינוק", "👶"], ["boy", "ילד", "👦"], ["girl", "ילדה", "👧"]]}, {"id": "nature", "name": "טבע", "icon": "🌳", "words": [["sun", "שמש", "☀️"], ["moon", "ירח", "🌙"], ["star", "כוכב", "⭐"], ["cloud", "ענן", "☁️"], ["rain", "גשם", "🌧️"], ["snow", "שלג", "❄️"], ["tree", "עץ", "🌳"], ["flower", "פרח", "🌸"], ["fire", "אש", "🔥"], ["rainbow", "קשת בענן", "🌈"], ["sea", "ים", "🌊"], ["mountain", "הר", "⛰️"], ["leaf", "עלה", "🍃"]]}];
+const KID_AGES = {gan:{label:"גן",icon:"🧸",n:2,len:6},a:{label:"כיתה א'",icon:"✏️",n:3,len:8},b:{label:"כיתה ב'",icon:"🎒",n:4,len:8}};
 const MAXBOX = 5;
 const KEY = "milabemila.v1";
 const uid = () => Math.random().toString(36).slice(2,9);
@@ -180,10 +221,11 @@ const errCopy = c => ({
 }[c] || "משהו השתבש. נסו שוב.");
 
 /* ---------- speech ---------- */
-let voice = null;
+let voice = null, heVoice = null;
 function pickVoice(){
   try {
     const vs = speechSynthesis.getVoices();
+    heVoice = vs.find(v=>/^(he|iw)/i.test(v.lang)) || null;
     voice = vs.find(v=>/en[-_]US/i.test(v.lang) && /Samantha|Google|Aria|Jenny/i.test(v.name)) || vs.find(v=>/en[-_]US/i.test(v.lang)) || vs.find(v=>/^en/i.test(v.lang)) || null;
   } catch(e) {}
 }
@@ -196,6 +238,25 @@ function say(text, slow){
     u.rate = slow ? 0.55 : 0.85;
     speechSynthesis.speak(u);
   } catch(e) {}
+}
+
+function speakSeq(parts){
+  // parts: [[text, "he"|"en", rate?], ...] spoken one after another; resolves when done (or after a safety timeout)
+  return new Promise(res=>{
+    let done=false; const fin=()=>{ if(!done){ done=true; res(); } };
+    try{
+      speechSynthesis.cancel();
+      parts.forEach(([t,lang,rate],i)=>{
+        const u=new SpeechSynthesisUtterance(t);
+        u.lang = lang==="he" ? "he-IL" : "en-US";
+        const v = lang==="he" ? heVoice : voice; if(v) u.voice=v;
+        u.rate = rate || (lang==="he" ? 1 : 0.8);
+        if(i===parts.length-1){ u.onend=fin; u.onerror=fin; }
+        speechSynthesis.speak(u);
+      });
+    }catch(e){ fin(); }
+    setTimeout(fin, 900 + parts.reduce((a,[t])=>a+t.length*110,0));
+  });
 }
 
 /* ---------- helpers ---------- */
@@ -249,6 +310,7 @@ function homeView(){
   }).join("");
   return `${header("home")}
   <button class="btn" data-act="add">+ רשימה חדשה מהמורה</button>
+  <button class="kids-entry" data-kact="start"><span class="em emo" aria-hidden="true">🧸</span><span><b>משחק לקטנים</b>מילים ראשונות בתמונות, מגן עד כיתה ב'</span></button>
   ${cards || `<div class="card"><p>עוד אין רשימות. צלמו את דף המילים מהמורה או הקלידו אותו, ונתחיל לתרגל.</p></div>`}`;
 }
 
@@ -291,7 +353,8 @@ function gradeView(){
     <p class="muted">לפי זה נבחר את רמת המילים במאגר ואת ברירת המחדל לרשימות חדשות. אפשר לשנות בכל רגע.</p>
     <div class="grade-grid">${btns}</div>
     ${first?"":`<p class="muted" style="font-size:.9rem">רשימות שכבר קיימות לא משתנות, וגם ההתקדמות בהן נשמרת.</p>`}
-  </div>`;
+  </div>
+  <button class="kids-entry" data-kact="start"><span class="em emo" aria-hidden="true">🧸</span><span><b>הילד בגן או בכיתה א'–ב'?</b>למשחק התמונות לקטנים</span></button>`;
 }
 function setGrade(g){
   state.grade = g;
@@ -545,11 +608,94 @@ function parentView(){
   <div id="resetbox" hidden class="card"><p>למחוק את כל הרשימות וההתקדמות במכשיר הזה?</p><div class="row"><button class="btn small" data-act="reset">כן, לאפס</button><button class="btn small soft" data-act="reset-cancel">ביטול</button></div></div>`;
 }
 
+/* ---------- kids picture game ---------- */
+let K = null;
+function kidsStore(){ if(!state.kids) state.kids = {age:null, seen:{}}; return state.kids; }
+function kidsStartView(){
+  const ks = kidsStore();
+  const ages = Object.entries(KID_AGES).map(([k,a])=>`<button class="k-age" data-kage="${k}" aria-pressed="${ks.age===k}"><span class="emo" aria-hidden="true">${a.icon}</span>${a.label}<small>${a.n} תמונות</small></button>`).join("");
+  const cats = KIDS.map(c=>`<button class="k-cat" data-kcat="${c.id}"><span class="emo" aria-hidden="true">${c.icon}</span>${c.name}</button>`).join("");
+  return `<div class="k-top"><button class="k-home" data-act="home" aria-label="חזרה למסך הראשי"><span class="emo">🏠</span></button><h2>משחק לקטנים</h2><span style="width:52px"></span></div>
+  <div class="card"><h3>באיזה גיל הילד?</h3><div class="k-ages">${ages}</div></div>
+  ${ks.age?`<h3>במה משחקים?</h3>
+  <div class="k-cats"><button class="k-cat all" data-kcat="all"><span class="emo" aria-hidden="true">🎲</span>הכול מעורבב</button>${cats}</div>
+  <p class="muted" style="font-size:.9rem">הילד שומע מילה באנגלית ובוחר את התמונה המתאימה. על טעות האפליקציה אומרת בעברית מה יש בתמונה, ואיך אומרים אותה באנגלית.</p>`
+  :`<p class="muted">בחרו גיל כדי להתחיל.</p>`}`;
+}
+function kidsPool(catId){
+  return catId==="all" ? KIDS.flatMap(c=>c.words.map(w=>({en:w[0],he:w[1],em:w[2],cat:c.id}))) : KIDS.find(c=>c.id===catId).words.map(w=>({en:w[0],he:w[1],em:w[2],cat:catId}));
+}
+function kidsStart(catId){
+  const ks = kidsStore(), age = KID_AGES[ks.age], pool = kidsPool(catId);
+  const score = w => { const s=ks.seen[w.en+"|"+w.em]; return s ? s.r - s.w*2 : -1; };
+  const targets = shuffle(pool).sort((a,b)=>score(a)-score(b)).slice(0, Math.min(age.len, pool.length));
+  const qs = shuffle(targets).map(t=>{
+    const others = shuffle(pool.filter(w=>w.en!==t.en && w.em!==t.em));
+    const seenEn = new Set([t.en]); const opts=[t];
+    for(const o of others){ if(opts.length>=age.n) break; if(!seenEn.has(o.en)){ seenEn.add(o.en); opts.push(o); } }
+    return {t, opts:shuffle(opts), wrong:[], done:false, first:true};
+  });
+  K = {cat:catId, qs, i:0, fb:"", fbc:"", busy:false};
+  go({name:"kidsGame"});
+  setTimeout(()=>kidsSayWord(), 300);
+}
+function kidsSayWord(){ if(K && K.qs[K.i]) speakSeq([[K.qs[K.i].t.en,"en"]]); }
+function starsHTML(){
+  return `<div class="k-stars" aria-label="כוכבים">${K.qs.map((q,i)=>`<i class="${q.done?(q.first?"on":"half"):""} emo">⭐</i>`).join("")}</div>`;
+}
+function kidsGameView(){
+  if(K.i>=K.qs.length) return kidsDoneView();
+  const q = K.qs[K.i], n=q.opts.length;
+  const tiles = q.opts.map((o,k)=>{
+    const isWrong = q.wrong.includes(k), isRight = q.done && o.en===q.t.en;
+    return `<button class="k-tile ${isWrong?"wrong":""} ${isRight?"right":""}" data-ktile="${k}" ${isWrong||q.done?"disabled":""} aria-label="${esc(o.he)}">
+      <span class="emo" aria-hidden="true">${o.em}</span>
+      <span class="lbl">${isWrong||isRight?`${esc(o.he)} · <span class="en">${esc(o.en)}</span>`:""}</span></button>`;
+  }).join("");
+  return `<div class="k-top"><button class="k-home" data-kact="exit" aria-label="יציאה מהמשחק"><span class="emo">🏠</span></button>${starsHTML()}</div>
+  <div class="card"><div class="k-q">
+    <button class="k-say" data-kact="say" aria-label="השמעת המילה שוב"><span class="emo">🔊</span></button>
+    <div class="k-word">${esc(q.t.en)}</div>
+    <div class="k-tiles n${n}">${tiles}</div>
+    <div class="k-fb ${K.fbc}" aria-live="polite">${K.fb}</div>
+  </div></div>`;
+}
+async function kidsTap(k){
+  const q = K.qs[K.i]; if(q.done || K.busy || q.wrong.includes(k)) return;
+  const o = q.opts[k], ks = kidsStore(), key = q.t.en+"|"+q.t.em;
+  ks.seen[key] = ks.seen[key] || {r:0,w:0};
+  if(o.en===q.t.en){
+    q.done = true; ks.seen[key].r++; save();
+    K.fb = q.first ? "כל הכבוד!" : "יופי, מצאת!"; K.fbc="good"; K.busy=true; render();
+    await speakSeq([[q.first?"כל הכבוד!":"יופי!","he"],[q.t.en,"en"]]);
+    K.busy=false; K.i++; K.fb=""; K.fbc=""; render(); setTimeout(kidsSayWord, 250);
+  } else {
+    q.wrong.push(k); q.first=false; ks.seen[key].w++; save();
+    K.fb = `טעות. התמונה הזאת היא ${esc(o.he)}, באנגלית <span class="en">${esc(o.en)}</span>`; K.fbc="bad"; K.busy=true; render();
+    await speakSeq([[`טעות, התמונה הזאת היא ${o.he}`,"he"],[o.en,"en"],["עוד פעם:","he"],[q.t.en,"en"]]);
+    K.busy=false;
+    // with one picture left it must be the answer; leave it for the child to tap
+  }
+}
+function kidsDoneView(){
+  const gold = K.qs.filter(q=>q.first).length, total = K.qs.length;
+  const t = gold===total ? "מושלם!" : gold>=total/2 ? "כל הכבוד!" : "יפה מאוד!";
+  return `<div class="card k-done">
+    <div class="trophy emo" aria-hidden="true">${gold===total?"🏆":"🌟"}</div>
+    <h2>${t}</h2>
+    ${starsHTML()}
+    <p class="num">${gold} כוכבים מלאים מתוך ${total}</p>
+    <div class="row" style="justify-content:center"><button class="btn" data-kact="again">▶ עוד סיבוב</button><button class="btn soft" data-kact="start">נושא אחר</button></div>
+  </div>`;
+}
+
 /* ---------- render + events ---------- */
 function render(){
   const app = $("#app");
-  if(!state.grade && view.name!=="grade") view = {name:"grade"};
-  if(view.name==="grade") app.innerHTML = gradeView();
+  if(!state.grade && !["grade","kids","kidsGame"].includes(view.name)) view = {name:"grade"};
+  if(view.name==="kids") app.innerHTML = kidsStartView();
+  else if(view.name==="kidsGame"){ app.innerHTML = kidsGameView(); if(K.i>=K.qs.length && !K.cheered){ K.cheered=true; speakSeq([["כל הכבוד! סיימת","he"]]); } }
+  else if(view.name==="grade") app.innerHTML = gradeView();
   else if(view.name==="home") app.innerHTML = homeView();
   else if(view.name==="parent") app.innerHTML = parentView();
   else if(view.name==="list") app.innerHTML = listView() || "";
@@ -569,6 +715,13 @@ document.addEventListener("click", e=>{
   if(d.src){ syncDraftInputs(); draft.src=d.src; draft.err=""; return render(); }
   if(d.bank){ draft.bankGrade=d.bank; return render(); }
   if(d.setgrade) return setGrade(d.setgrade);
+  if(d.kage){ kidsStore().age=d.kage; save(); return render(); }
+  if(d.kcat) return kidsStart(d.kcat);
+  if(d.ktile!==undefined) return kidsTap(+d.ktile);
+  if(d.kact==="start"){ try{speechSynthesis.cancel()}catch(_){} K=null; return go({name:"kids"}); }
+  if(d.kact==="exit"){ try{speechSynthesis.cancel()}catch(_){} K=null; return go({name:"kids"}); }
+  if(d.kact==="say") return kidsSayWord();
+  if(d.kact==="again") return kidsStart(K.cat);
   if(d.topic){ draft.words = BANK[draft.bankGrade][d.topic].map(([en,he])=>({en,he,flag:false,note:""})); draft.name=d.topic; draft.grade=draft.bankGrade; draft.testDate=""; return render(); }
   if(d.del!==undefined){ syncDraftInputs(); draft.words.splice(+d.del,1); return render(); }
   if(d.pick!==undefined && P){
